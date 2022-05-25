@@ -1,4 +1,4 @@
-class User
+class User ActiveRecord::Base
   include Mongoid::Document
   include Mongoid::Timestamps
   include ActiveModel::SecurePassword
@@ -10,9 +10,12 @@ class User
   field :password_digest, type: String
   field :type, type: Integer
 
-#  #reglas de validacion de parametros del usuario
   has_many :items
+  has_many :bookings
+
   has_secure_password
+
+#  #reglas de validacion de parametros del usuario
   before_save { self.email = email.downcase }
   validates :name, presence: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

@@ -1,4 +1,4 @@
-class Room
+class Room < ActiveRecord::Base
   include Mongoid::Document
   include Mongoid::Timestamps
 
@@ -10,4 +10,7 @@ class Room
   field :beed2, type: Integer
   field :price, type: Integer
   field :ocupation, type: Mongoid::Boolean
+
+  has_many :bookings
+
 end
