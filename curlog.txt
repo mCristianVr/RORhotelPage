@@ -1,0 +1,19 @@
+HTTP/1.1 200 OK
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+X-Download-Options: noopen
+X-Permitted-Cross-Domain-Policies: none
+Referrer-Policy: strict-origin-when-cross-origin
+Content-Type: application/json; charset=utf-8
+Vary: Accept
+Cache-Control: no-store, must-revalidate, private, max-age=0
+X-Request-Id: 0c575965-8d65-430c-8d32-ec0dbfffcf92
+X-Runtime: 0.318736
+Strict-Transport-Security: max-age=63072000; includeSubDomains
+X-MiniProfiler-Original-Cache-Control: max-age=0, private, must-revalidate
+X-MiniProfiler-Ids: h6nuhrmeibbhex8mmr9y,zb92zyrfauew0tu86i4k,d59v7eajnrwbi0jg0dws,ws3slr2iko1ff9gxflwn,bvkin59w03jrgf2rslz8,hsn5ks9l1e0oyijx88od,3iaii1zr5y8l84rtdi1h,x8mp3vw72kw1gna8mxu6,3hffzsa6bet8huz5u44,aovm2plj3bwcldymuosi,4gxp529fa4o72su32nca,q7f8gkfjrkbiwtezrlt1,fa57b2wtm6ltgcwg81fy,zmj827yl383i5uzxcy3r,firwphvr6zsg1o43wndf,fhdm2udduz5vxm6ip7s5,n7g9n2nd77z4n0kp6ebb,85odyl7joq2ef8h2wj92,jzitc6ifln3p9ok5es5c,nrrxfhdqlld1a6v1a072
+Set-Cookie: __profilin=p%3Dt; path=/; secure; HttpOnly; SameSite=Lax
+Transfer-Encoding: chunked
+
+{"msg":"login correcto","user":{"_id":{"$oid":"628646fe9916d15931b4db91"},"created_at":"2022-05-19T13:32:46.323Z","email":"jhon@gmail.com","password_digest":"$2a$12$NMrr1Tvj3DGk/EAQpAuByegY9XXGqPXTSD3r.6TkY2Va15Bwb/s7y","updated_at":"2022-05-19T13:32:46.323Z","username":"jhon"}}

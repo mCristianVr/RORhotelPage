@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  num: 1
+  desc: MyText
+  cap: 1
+  beed1: 1
+  beed2: 1
+  price: 
+  ocupation: false
+
+two:
+  num: 1
+  desc: MyText
+  cap: 1
+  beed1: 1
+  beed2: 1
+  price: 
+  ocupation: false

@@ -1,0 +1,86 @@
+<div class="m-auto bg-white pb-5">
+
+
+<h1>Habitaciones</h1>
+
+<p id="notice"><%= notice %></p>
+
+
+<div class="mx-2 border shadow rounded p-4 d-inline-flex flex-column bg-white ">
+<p>Resumen:
+</p>
+
+<p class="m-0">Ocupacion general: <%= (@rooms.where(ocupation: true).count())*100/@rooms.count() %>%</p>
+<div class="progress m-o mb-3" style="">
+<div class="p-0 d-flex progress-bar" role="progressbar" aria-valuenow="<%= (@rooms.where(ocupation: true).count())*100/@rooms.count() %>" aria-valuemin="0" aria-valuemax="100" style="width:<%= (@rooms.where(ocupation: true).count())*100/@rooms.count() %>%">
+</div></div>
+
+<p>Habitaciones libres para dos personas: <%= @rooms.where(cap: 4, ocupation: false).count() %> de <%= @rooms.where(cap: 4).count() %>
+</p>
+ 
+<p>Habitaciones libres para dos personas: <%= @rooms.where(cap: 2, ocupation: false).count() %> de <%= @rooms.where(cap: 2).count() %>
+</p>
+
+<p>Habitaciones libres para una persona: <%= @rooms.where(cap: 1, ocupation: false).count() %> de <%= @rooms.where(cap: 1).count() %>
+</p>
+
+<p class="m-0" >Suits libres: <%= @rooms.where(desc: /suit/,ocupation: false).count() %> de <%= @rooms.where(desc: /suit/).count() %>
+</p>
+</div>
+
+<div class="m-2 my-3">
+<%= link_to 'Nueva habitacion', new_room_path %>
+</div>
+
+<table class="table table-hover d-block m-2">
+  <thead class="table-dark shadow">
+    <tr>
+      <th>#</th>
+      <th>Capacidad</th>
+      <th>Cama Sing</th>
+      <th>Cama Mat</th>
+      <th>Precio</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody class="shadow">
+    <% @rooms.sort_by{ |room| [room.num] }.each do |room| %>
+      <tr class="text-center align-middle
+
+	 <% if room.ocupation == true %>
+	   bg-ocupado
+	 <% else %>
+	   bg-libre
+	 <% end %>
+	
+	">
+
+        <td><%= room.num %></td>
+        <td><%= room.cap %></td>
+        <td><%= room.beed1 %></td>
+        <td><%= room.beed2 %></td>
+        <td><%= room.price %></td>
+
+        <td class="d-flex"><%= link_to 'Edit', edit_room_path(room) %>
+            <%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+       </tr>
+       <tr class="border-bottom border-dark w-100
+	<% if room.ocupation == true %>
+	  bg-ocupado
+	<% else %>
+	  bg-libre
+	<% end %>
+	">
+        <td class="bg-dark"></td>
+        <td colspan="1" class="bg-dark text-light">Descripción: </td>
+        <td colspan="5"><%= room.desc %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+</div>

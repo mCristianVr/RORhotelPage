@@ -1,0 +1,39 @@
+<div
+  class="bg-white pb-5 mb-5 mx-auto rounded-bottom shadow"
+  style="max-width: 500px;"
+>
+
+<h1>Registro</h1>
+
+<% flash.each do |message_type, message| %>
+  <div class="my-0 text-center alert alert-<%= message_type %>">
+    <%= message %>
+  </div>
+<% end %>
+
+<div class="mx-3">
+  <div class="">
+    <%= form_with(model: @user, local: true) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label :name, "Nombre" %>
+      <%= f.text_field :name, class: 'mb-1 form-control' %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'mb-1 form-control' %>
+
+      <%= f.label :password, "Contraseña" %>
+      <%= f.password_field :password, class: 'mb-1 form-control' %>
+
+      <%= f.label :password_confirmation, "Confirmar contraseña" %>
+      <%= f.password_field :password_confirmation, class: 'mb-1 form-control' %>
+
+
+      <%= f.hidden_field :type, :value => 2 %>
+
+
+      <%= f.submit "Create my account", class: "mt-2 btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+</div>

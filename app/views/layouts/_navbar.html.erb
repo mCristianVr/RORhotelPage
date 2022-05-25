@@ -1,0 +1,37 @@
+<div class="navbar nbar navbar-expand-lg fixed-top m-0 p-0">
+<div class="container-fluid">
+
+ <div class="nav-item"><a class="nav-link logo p-0" href="/" > HOTEL </a></div>
+ <button class="navbar-toggler navbar-dark custom-toggler" type="button" data-bs-toggle="collapse" 
+	data-bs-target="#barra" 
+	aria-controls="barra"
+	aria-expanded="true"
+	aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+ </button>
+
+ <div class="collapse navbar-collapse" id="barra" style>
+  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+   <li class="nav-item"><a class="nav-link" href="/rooms/"> Habitaciones </a></li>
+   <li class="nav-item"><a class="nav-link"> Reserva </a></li>
+   <li class="nav-item"><a class="nav-link"> Contactos </a></li>
+
+
+   <% if logged_in? %>
+     <li class="nav-item"> <%= link_to "Log out", logout_path, class: "nav-link", method: :delete %></li>
+
+     <li class="nav-item"> 
+       <%= link_to session[:name], user_path(:id => session[:user_id]), method: :get, 
+         class: "nav-link" %> 
+     </li> 
+
+   <% else %>
+     <li class="nav-item"> <%= link_to "Log in", login_path, class: "nav-link" %> </li>
+     <li class="nav-item"> <%= link_to "Registro", registro_path, class: "nav-link" %>  </li>
+   <% end %>
+
+  </ul>
+ </div>
+
+</div>
+</div>

@@ -1,0 +1,56 @@
+<%= form_with(model: room) do |form| %>
+  <% if room.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(room.errors.count, "error") %> prohibited this room from being saved:</h2>
+
+      <ul>
+        <% room.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<div class="d-table mx-2 mb-3">
+
+  <div class="d-table-row ">
+    <label class="d-table-cell text-end pe-4 ">Numero:</label>
+    <div class="d-table-cell"><%= form.number_field :num %></div>
+  </div>
+<br>
+  <div class="d-table-row ">
+    <label class="d-table-cell text-end pe-4 align-middle">Descripción:</label>
+    <div class="d-table-cell align-middle"><%= form.text_area :desc %></div>
+  </div>
+<br>
+  <div class="d-table-row ">
+    <label class="d-table-cell text-end pe-4 ">Capacidad:</label>
+    <div class="d-table-cell"><%= form.number_field :cap %></div>
+  </div>
+<br>
+  <div class="d-table-row ">
+    <label class="d-table-cell text-end pe-4 ">Cama Individual</label>
+    <div class="d-table-cell"><%= form.number_field :beed1 %></div>
+  </div>
+<br>
+  <div class="d-table-row ">
+    <label class="d-table-cell text-end pe-4 ">Cama Doble:</label>
+    <div class="d-table-cell"><%= form.number_field :beed2 %></div>
+  </div>
+<br>
+  <div class="d-table-row ">
+    <label class="d-table-cell text-end pe-4 ">Precio:</label>
+    <div class="d-table-cell"><%= form.text_field :price %></div>
+  </div>
+<br>
+  <div class="d-table-row ">
+    <label class="d-table-cell text-end pe-4 ">Ocupación:</label>
+    <div class="d-table-cell"><%= form.check_box :ocupation %></div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+</div>

@@ -1,0 +1,292 @@
+<div>
+ <header>
+
+  <div class="headerImg"> 
+    <%= image_tag 'hotelWide.jpg', style: "max-width: 100%;"%>
+  </div>
+
+
+  <div id="turnOff" class="headerImg turnOff">
+    <%= image_tag 'hotelWideOff.jpg', style: "max-width: 100%" %>
+  </div>
+
+ </header>
+
+ <div style="position: relative">
+
+  <h1 class="headerH" style="position: absolute; bottom:10%;">
+	Que tenga una agradable estancia.
+  </h1>   
+    
+
+  <div class="" style="opacity:0;"> 
+    <%= image_tag 'hotelWide.jpg', style: "max-width: 100%" %>
+  </div>
+
+ </div>
+</div>
+
+<!-- ====================================================BARRA NEGRA -->
+
+<div class="collapse" id="navbarToggleExternalContent">
+  <div class="bg-dark p-4">
+    <h5 class="text-white h4">Contenido Oculto</h5>
+    <span class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula odio in neque semper ultricies.</span>
+  </div>
+</div>
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ====================================================Contenido principal -->
+
+
+
+<main class="bg-white mx-auto" style="max-width:800px; min-height: 80vh">
+
+
+
+  <section class="text-left">
+    <div class="">
+
+      <h1 class="">Titulo h1</h1>
+        
+      <div class="w-75 mx-auto">
+
+	<p class="lead text-dark">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+		Duis vehicula odio in neque semper ultricies. 
+		Fusce efficitur ut purus vel placerat. 
+		Aliquam eu accumsan libero.
+	</p>
+
+        <p class="text-center">
+          <a href="#" class="btn btn-primary my-2">Main call to action</a>
+          <a href="#" class="btn my-2">Secondary action</a>
+        </p>
+
+	<div class="alert alert-warning">
+	  Todo el contenido de esta pagina es irrelevante y solo esta para adornar.
+	</div>
+
+
+	<p class="text-dark">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+		Duis vehicula odio in neque semper ultricies. 
+		Fusce efficitur ut purus vel placerat. 
+		Aliquam eu accumsan libero.
+	</p>
+
+
+
+      </div>
+
+    </div>
+  </section>
+
+
+<!-- ========================================================SEGUNDA PARTE -->
+
+
+  <section class="mx-auto mt-5" style="max-width: 85%">
+    <div class="">
+
+      <h2 class="">Titulo h2</h2>
+
+	<div class="gtco-testimonials">
+  
+	  <div class="owl-carousel owl-carousel1 owl-theme">
+
+	    <div>
+	      <div class="card text-center">
+	        <%= image_tag 'roomSpace.png', class: 'card-img-top' %>
+	        <div class="card-body">
+	          <h3>Espacio <br /></h3>
+	          <p class="card-text">
+	            Para los que necesitan espacio.
+	          </p>
+		  <span class="text-warning">
+		    <i class="bi bi-star-fill"></i>
+		    <i class="bi bi-star-fill"></i>
+		    <i class="bi bi-star-fill"></i>
+		    <i class="bi bi-star-half"></i>
+		    <i class="bi bi-star"></i>
+		  </span>
+	        </div>
+	      </div>
+	    </div>
+
+	    <div>
+	      <div class="card text-center">
+	         <%= image_tag 'roomAnime.png', class: 'card-img-top' %>
+	        <div class="card-body">
+	          <h5>Habitacion anime<br /></h5>
+	          <p class="card-text"> 
+		    Para los Otakus.
+		  </p>
+		  <span class="text-warning">
+		    <i class="bi bi-star-fill"></i>
+		    <i class="bi bi-star-half"></i>
+		    <i class="bi bi-star"></i>
+		    <i class="bi bi-star"></i>
+		    <i class="bi bi-star"></i>
+		  </span>
+	        </div>
+	      </div>
+	    </div>
+
+	    <div>
+	      <div class="card text-center">
+		<%= image_tag 'redRoomCut.jpg', class: 'card-img-top' %>
+	        <div class="card-body">
+	          <h5>Habitación Roja<br />
+	          </h5>
+	          <p class="card-text">
+	            Para los que les gusta el rojo.
+	          </p>
+		  <span class="text-warning">
+		    <i class="bi bi-star-fill"></i>
+		    <i class="bi bi-star-fill"></i>
+		    <i class="bi bi-star-fill"></i>
+		    <i class="bi bi-star-fill"></i>
+		    <i class="bi bi-star-fill"></i>
+		  </span>
+	        </div>
+	      </div>
+	    </div>
+
+	    <div>
+	      <div class="card text-center">
+	          <%= image_tag 'roomDor.jpg', class: 'card-img-top' %>
+	        <div class="card-body">
+	          <h5>Habitación Aburrida<br /></h5>
+	          <p class="card-text">
+	            Para los que no les gusta el rojo.
+	          </p>
+		  <span class="text-warning">
+		    <i class="bi bi-star"></i>
+		    <i class="bi bi-star"></i>
+		    <i class="bi bi-star"></i>
+		    <i class="bi bi-star"></i>
+		    <i class="bi bi-star"></i>
+		  </span>
+	        </div>
+	      </div>
+	    </div>
+
+	    <div>
+	      <div class="card text-center">
+	          <%= image_tag 'BlueServerRoom.jpg', class: 'card-img-top' %>
+	        <div class="card-body">
+	          <h5>Servidores<br /></h5>
+	          <p class="card-text">
+	            Tenia esta imagen por ahí.
+	          </p>
+		  <span class="text-warning">
+		    <i class="bi bi-star-half"></i>
+		    <i class="bi bi-star"></i>
+		    <i class="bi bi-star"></i>
+		    <i class="bi bi-star"></i>
+		    <i class="bi bi-star"></i>
+		  </span>
+	        </div>
+	      </div>
+	    </div>
+
+	  </div>
+
+	</div>    
+      
+    </div>
+  </section>
+
+
+
+
+</main>
+
+
+<!-- ========================================================JAVASCRIPT -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+
+<script>
+
+<!-- ========================================================TURNOFF -->
+
+var $turnOffElement = document.getElementById("turnOff");
+var turnOffHeight = $turnOffElement.offsetHeight;
+
+function turnOff() {
+
+ var scrollPos = $(window).scrollTop();
+ var transformValue = scrollPos/50;
+ var opacityValue = 0 + ( scrollPos / 500 );
+
+ console.log(turnOffHeight)
+
+
+ if ( scrollPos < turnOffHeight ) {
+   $turnOffElement.style.opacity = opacityValue;
+ }
+
+}
+
+
+$(window).scroll(function() {
+  turnOff();
+});
+
+
+
+
+<!-- ========================================================CAROUSEL -->
+
+(function () {
+  "use strict";
+
+  var carousels = function () {
+    $(".owl-carousel1").owlCarousel({
+      loop: true,
+      center: true,
+      margin: 0,
+      responsiveClass: true,
+      nav: false,
+      responsive: {
+        0: {
+          items: 1,
+          nav: false
+        },
+        680: {
+          items: 2,
+          nav: false,
+          loop: false
+        },
+        1000: {
+          items: 3,
+          nav: true
+        }
+      }
+    });
+  };
+
+  (function ($) {
+    carousels();
+  })(jQuery);
+})();
+
+
+</script>
+
+
+
+
+
+

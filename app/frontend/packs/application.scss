@@ -1,0 +1,336 @@
+$tangaroa: #041b38;		//azul muy oscuro
+$endeavour: #0455af;		//azul normal
+$gris: #c1cad0;			//gris
+$curious-blue: #2fa8d7;		//azul muy claro
+$catalina-blue: #043082;	//azul un poco oscuro
+$green-vogue: #04245a;		//azul un poco mas oscuro
+$dorado: #65514e;		//marron apagado
+$tuna: #3a3c48;			//marron gris
+$venice-blue: #06668e;		//azul claro apagado
+
+
+@import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:ital@1&family=Train+One&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css");
+
+
+body{
+ margin: 0;
+ padding: 0;
+ background-color: #{$gris};
+ min-height: 100vh;
+ display: flex;
+ flex-direction: column;
+}
+
+h1 {
+ font-family: 'Josefin Slab', cursive;
+ padding: 10px 0;
+ padding-left: 15px;
+ background-color: #{$catalina-blue};
+ color: #fff;
+ 
+ animation: flicker 1.5s infinite alternate;
+}
+
+h2 {
+ font-family: 'Josefin Slab';
+ font-size: 25px;
+ font-weight: bold;
+ padding: 5px 0;
+ padding-left: 5px;
+ padding-right: 5px;
+ border-bottom: 3px solid #{$catalina-blue};
+ color: #{$catalina-blue};
+}
+
+
+.nbar{
+ background-color: #{$tangaroa};
+ color: white;
+}
+
+/*-----------------------------------------------------Logo style*/
+.logo {
+ background: none !important;
+ border: none !important;
+ font-family: 'Train One' !important;
+ font-size: 50px !important;
+ color: white !important;
+ 
+ animation: text-glow 4s ease-in-out infinite alternate;
+}
+
+
+/*----------------------------navbar*/
+
+
+.custom-toggler.navbar-toggler{
+ border-color: white;
+ background-color: #{$catalina-blue};
+ animation: box-glow 4s ease-in-out infinite alternate;
+}
+
+.nav-link{
+ background: none !important;
+ border: none !important;
+ color: white !important;
+ font-size: 20px;
+ font-family: 'Josefin Slab';
+ color: white;
+}
+
+
+
+/*-----------------------------------------------Navbar hover style*/
+.nav-link:hover {
+ background: none;
+ color: white;
+ 
+ text-shadow:
+  0 0 5px #fff,
+  0 0 15px #fff,
+  0 0 30px #{$curious-blue},
+  0 0 45px #{$curious-blue};
+}
+
+
+
+/*--------------------------------------------Flicker animation of H1*/
+@keyframes flicker {    
+  18%, 22%, 53%, 100% {
+      text-shadow:
+      0 0 5px #fff,
+      0 0 15px #fff,
+      0 0 30px #{$curious-blue},
+      0 0 45px #{$curious-blue};
+  }
+  
+  20%, 24% { 
+      text-shadow: none;
+  }    
+}
+
+
+/*----------------------------Text glowing animation for logo and collapse togler*/
+
+@-webkit-keyframes text-glow {
+  from {
+    text-shadow: 
+    0 0 5px #fff, 
+    0 0 9px #fff, 
+    0 0 28px #{$curious-blue}, 
+    0 0 35px #{$curious-blue};
+  }
+  
+  to {
+    text-shadow: 
+    0 0 29px #fff, 
+    0 0 33px #{$curious-blue}, 
+    0 0 55px #{$curious-blue}, 
+    0 0 65px #{$curious-blue};
+  }
+}
+
+@-webkit-keyframes box-glow{
+  from {
+    box-shadow: 
+    0 0 2px #fff, 
+    0 0 5px #fff, 
+    0 0 10px #{$curious-blue}, 
+    0 0 15px #{$curious-blue},
+    inset 0 0 5px #fff, 
+    inset 0 0 9px #fff, 
+    inset 0 0 10px #{$curious-blue}, 
+    inset 0 0 15px #{$curious-blue};
+  }
+  
+  to {
+    box-shadow: 
+    0 0 5px #fff, 
+    0 0 7px #{$curious-blue}, 
+    0 0 15px #{$curious-blue}, 
+    0 0 17px #{$curious-blue},
+    inset 0 0 5px #fff, 
+    inset 0 0 7px #{$curious-blue}, 
+    inset 0 0 15px #{$curious-blue}, 
+    inset 0 0 17px #{$curious-blue};
+  }
+ 
+}
+
+
+tr{
+ padding-left: 5px; 
+}
+td{
+ max-width: 45ch;
+}
+
+
+
+
+/*----------------------------backgrounds*/
+
+
+.bg-ocupado{
+ background: #FFE194;
+}
+.bg-libre{
+ background: #E8F6EF;
+}
+
+.bg-oscuro{
+ background: #{$catalina-blue};
+}
+
+
+/*----------------------------links*/
+
+
+a.editButton:link, a.editButton:visited {
+  color: black;
+  padding: 5px;
+  background: white;
+  border: 2px solid #{$venice-blue};
+  text-decoration: none;
+}
+
+a.editButton:hover, a.editButton:active {
+  color: white !important;
+  background: #{$venice-blue};
+}
+
+
+header{
+  position:relative;
+}
+
+
+
+
+/*----------------------------Turnoff header*/
+
+
+.turnOff{
+  opacity: 0;
+}
+
+.headerImg{
+  position: absolute;
+  top:0;
+}
+
+.headerH{
+ display: inline;
+ background: none;
+ font-style: italic;
+ font-size: 3.7vw;
+}
+
+
+/*----------------------------carousel */
+.gtco-testimonials {
+  position: relative;
+  margin-top: 30px;
+  height: 500px;
+
+  .owl-stage-outer {
+    padding: 30px 0;
+  }
+
+  .owl-nav {
+    display: none;
+  }
+
+  .owl-dots {
+    text-align: center;
+
+    .active {
+      box-shadow: none;
+    }
+  }
+
+  .card {
+    background: #fff;
+    box-shadow: 0 8px 30px -7px #c9dff0;
+    margin: 0 20px;
+    padding: 0 10px;
+    border-radius: 20px;
+    border: 0;
+
+    .card-img-top {
+      max-width: 100px;
+      border-radius: 5%;
+      margin: 15px auto 0;
+      box-shadow: 0 8px 20px -4px #95abbb;
+      width: 100px;
+      height: 100px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #555;
+      padding-bottom: 15px;
+    }
+  }
+
+  .active {
+    opacity: 0.5;
+    transition: all 0.3s;
+  }
+
+  .center {
+    opacity: 1;
+
+    h5 {
+      font-size: 24px;
+
+      span {
+        font-size: 20px;
+      }
+    }
+
+    .card-img-top {
+      max-width: 100%;
+      height: 120px;
+      width: 120px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .gtco-testimonials {
+    margin-top: 20px;
+  }
+}
+
+.owl-carousel {
+  .owl-nav button {
+    &.owl-next, &.owl-prev {
+      outline: 0;
+    }
+  }
+
+  button.owl-dot {
+    outline: 0;
+  }
+}
+
+
+
+
+/*----------------------------habitaciones */
+
+.card-link {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+
+  p {
+    margin: 0;
+  }
+
+}
+
+

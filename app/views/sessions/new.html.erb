@@ -1,0 +1,30 @@
+<div
+  class="bg-white pb-5 mb-5 mx-auto rounded-bottom shadow"
+  style="max-width: 500px;"
+>
+
+<h1>Log in</h1>
+
+<% flash.each do |message_type, message| %>
+  <div class="my-0 text-center alert alert-<%= message_type %>">
+    <%= message %>
+  </div>
+<% end %>
+
+<div class="mx-3">
+  <div class="">
+    <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.submit "Log in", class: " mt-2 btn btn-primary" %>
+    <% end %>
+
+  </div>
+</div>
+</div>
+
