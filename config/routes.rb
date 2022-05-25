@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :bookings
   resources :rooms
 
   mount ForestLiana::Engine => '/forest'
