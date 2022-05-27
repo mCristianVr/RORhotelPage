@@ -1,0 +1,32 @@
+<div
+  class="bg-white pb-5 mb-5 mx-auto rounded-bottom shadow"
+  style="max-width: 500px;"
+>
+
+
+<div class="d-table mx-auto">
+
+<% if !notice.nil? %>
+<p id="notice" class="alert alert-warning"><%= notice %></p>
+<% end %>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @style.desc %>
+</p>
+
+<p>
+  <strong>Cap:</strong>
+  <%= @style.cap %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @style.price %>
+</p>
+
+<%= link_to 'Editar', styles_path, class: "btn text-white bg-secondary"  %> |
+<%= link_to 'Atras', styles_path, class: "btn text-white bg-secondary"  %>
+
+</div>
+</div>

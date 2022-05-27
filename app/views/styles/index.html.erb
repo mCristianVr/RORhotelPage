@@ -1,0 +1,43 @@
+
+<div class="container m-auto bg-white rounded-bottom shadow p-0 pb-5" style="max-width: 500px">
+
+<h1>Estilos</h1>
+
+<div class="d-table mx-auto">
+
+<% if !notice.nil? %>
+<p id="notice" class="alert alert-warning"><%= notice %></p>
+<% end %>
+
+
+<table class="table table-hover d-block m-auto" style="max-width: 342px">
+  <thead>
+    <tr>
+      <th>Desc</th>
+      <th>Cap.</th>
+      <th>Precio</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @styles.each do |style| %>
+      <tr>
+        <td><%= style.desc.capitalize %></td>
+        <td><%= style.cap %></td>
+        <td><%= style.price %>€</td>
+        <td>
+          <%= link_to 'Edit', edit_style_path(style), class: "editButton"  %>
+          <%= link_to 'Destroy', style, method: :delete, data: { confirm: 'Are you sure?' }, class: "editButton"  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Crear Estilo', new_style_path, class: "btn btn-primary" %>
+
+</div>
+
+</div>

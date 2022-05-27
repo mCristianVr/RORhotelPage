@@ -9,354 +9,111 @@
 
  <div class="m-auto">
   <div class="mx-2 border shadow rounded p-4 d-inline-flex flex-column bg-white ">
-
+<% unless (@rooms.nil? && @rooms != 0) %>
 	<p class="m-0">
+
+<!---------------- Ocupación general total ===============----->
 		Ocupacion general: 
 		<%= (@rooms.where(ocupation: true).count())*100/@rooms.count() %>%
 	</p>
 	<div class="progress m-o mb-3" style="">
-		<div class="p-0 d-flex progress-bar" role="progressbar" aria-valuenow="<%= (@rooms.where(ocupation: true).count())*100/@rooms.count() %>" aria-valuemin="0" aria-valuemax="100" style="width:<%= (@rooms.where(ocupation: true).count())*100/@rooms.count() %>%">
+		<div class="p-0 d-flex progress-bar" role="progressbar" aria-valuenow="<%= (@rooms.where(ocupation: true).count())*100/@rooms.count() %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (@rooms.where(ocupation: true).count())*100/@rooms.count() %>%">
 		</div>
 	</div>
+  <% end %>
 
   </div>
 
   <div class="m-2 my-3">
-   <%= link_to 'Nueva habitacion', new_room_path, class: "editButton" %>
+   <%= link_to 'Nueva habitacion', new_room_path, class: "btn btn-primary" %>
   </div>
  </div>
 
 
+<!----------------Acordion Container LOOP===============----->
+<div class="container" style="max-width: 385px; min-width: 385px">
+  <div id="accordion" style="max-width: 385px; min-width: 385px">
 
-<!----------------AcordionContainer===============----->
 
-<div class="container" style="max-width: 516px; min-width: 516px">
-  <div id="accordion">
+<!---------------- Nueva tabla por cada estilo ===============----->
+  <% Style.each do |style| %>
     <div class="card">
       <div class="card-header">
-        <a class="card-link d-flex justify-content-between" data-toggle="collapse" href="#collapseOne">
-          
-	  <p>Habitaciones para cuatro personas:</p>
+        <a class="card-link d-flex " data-toggle="collapse" href="#collapse<%= style.desc %>">
+                
+          <p class="me-auto">Habitaciones <%= style.desc %>:</p>
 
-	  <div class="d-flex flex-wrap">
+          <div class="d-flex flex-wrap">
 
-	   <p class="">Ocupacion: </p>
-	   <p> 
-		<%= @rooms.where(cap: 4, ocupation: false).count() %>
-		/
-		<%= @rooms.where(cap: 4).count() %>
-	   </p>
+           <p class="">Ocupacion: &nbsp;</p>
+           <p> 
+<!---------------- Resumen de la ocupacion ===============----->
+            <%= @rooms.where(style_id: style._id, ocupation: false).count() %>
+            /
+            <%= @rooms.where(style_id: style._id).count() %>
+            &nbsp;
+           </p>
 
-	  </div>
+          </div>
 
-	  <i class="bi bi-caret-down-fill align-self-end"></i>
+          <i class="bi bi-caret-down-fill align-self-end"></i>
 
         </a>
       </div>
-      <div id="collapseOne" class="collapse" data-parent="#accordion">
+
+      <div id="collapse<%= style.desc %>" class="collapse" data-parent="#accordion">
         <div class="card-body p-0">
 
-<table class="table table-hover d-block">
-  <thead class="table-dark shadow">
-    <tr>
-      <th>#</th>
-      <th>Capacidad</th>
-      <th>Cama Sing</th>
-      <th>Cama Mat</th>
-      <th>Precio</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
+          <table class="table table-hover d-block m-0">
+            <thead class="table-dark ">
+              <tr>
+                <th>#</th>
+                <th>Capacidad</th>
+                <th>Estilo</th>
+                <th>Precio</th>
+                <th colspan="1"></th>
+              </tr>
+            </thead>
 
-  <tbody class="shadow">
-    <% @rooms.where(cap: 4).sort_by{ |room| [room.num] }.each do |room| %>
-      <tr class="text-center align-middle
+            <tbody class="">
 
-	 <% if room.ocupation == true %>
-	   bg-ocupado
-	 <% else %>
-	   bg-libre
-	 <% end %>
-	
-	">
+<!---------------- Por cada habitacion con el estilo ===============----->
+              <% @rooms.where(style_id: style._id).sort_by{ |room| [room.num] }.each do |room| %>
+                <tr class="text-center align-middle
 
-        <td><%= room.num %></td>
-        <td><%= room.cap %></td>
-        <td><%= room.beed1 %></td>
-        <td><%= room.beed2 %></td>
-        <td><%= room.price %></td>
+                  <% if room.ocupation == true %>
+                    bg-ocupado
+                  <% else %>
+                    bg-libre
+                  <% end %>
+                
+                ">
 
-        <td class="d-flex">
-	   <%= link_to 'Edit', edit_room_path(room), class: "editButton" %>
-           <%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' }, class: "editButton" %></td>
-       </tr>
-       <tr class="border-bottom border-dark w-100
-	<% if room.ocupation == true %>
-	  bg-ocupado
-	<% else %>
-	  bg-libre
-	<% end %>
-	">
-        <td class="bg-dark"></td>
-        <td colspan="1" class="bg-dark text-light">Descripción: </td>
-        <td colspan="5"><%= room.desc %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+                  <td><%= room.num %></td>
+                  <td><%= room.style.cap %></td>
+                  <td><%= room.style.desc %></td>
+                  <td><%= room.style.price %></td>
 
+                  <td class="d-flex">
+                    <%= link_to 'Edit', edit_room_path(room), class: "editButton" %>
+                    <%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' }, class: "editButton" %> 
+                  </td>
+
+                 </tr>
+                 
+              <% end %>
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  </div>
 </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        
-        <a class="card-link d-flex justify-content-between" 
-		data-toggle="collapse" 
-		href="#collapseTwo">
-          
-	  <p>Habitaciones para dos personas:</p>
 
-	  <div class="d-flex flex-wrap">
-
-	   <p class="">Ocupacion: </p>
-	   <p> 
-		<%= @rooms.where(cap: 2, ocupation: false).count() %>
-		/
-		<%= @rooms.where(cap: 2).count() %>
-	   </p>
-
-	  </div>
-
-	  <i class="bi bi-caret-down-fill align-self-end"></i>
-
-        </a>
-      </div>
-      <div id="collapseTwo" class="collapse" data-parent="#accordion">
-        <div class="card-body p-0">
-
-
-<table class="table table-hover d-block">
-  <thead class="table-dark shadow">
-    <tr>
-      <th>#</th>
-      <th>Capacidad</th>
-      <th>Cama Sing</th>
-      <th>Cama Mat</th>
-      <th>Precio</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
-
-  <tbody class="shadow">
-    <% @rooms.where(cap: 2).sort_by{ |room| [room.num] }.each do |room| %>
-      <tr class="text-center align-middle
-
-	 <% if room.ocupation == true %>
-	   bg-ocupado
-	 <% else %>
-	   bg-libre
-	 <% end %>
-	
-	">
-
-        <td><%= room.num %></td>
-        <td><%= room.cap %></td>
-        <td><%= room.beed1 %></td>
-        <td><%= room.beed2 %></td>
-        <td><%= room.price %></td>
-
-        <td class="d-flex">
-	   <%= link_to 'Edit', edit_room_path(room), class: "editButton" %>
-           <%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' }, class: "editButton" %></td>
-       </tr>
-       <tr class="border-bottom border-dark w-100
-	<% if room.ocupation == true %>
-	  bg-ocupado
-	<% else %>
-	  bg-libre
-	<% end %>
-	">
-        <td class="bg-dark"></td>
-        <td colspan="1" class="bg-dark text-light">Descripción: </td>
-        <td colspan="5"><%= room.desc %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        
-        <a class="card-link d-flex justify-content-between" 
-		data-toggle="collapse" 
-		href="#collapseThree">
-          
-	  <p>Habitaciones para una persona:</p>
-
-	  <div class="d-flex flex-wrap">
-
-	   <p class="">Ocupacion: </p>
-	   <p> 
-		<%= @rooms.where(cap: 1, ocupation: false).count() %>
-		/
-		<%= @rooms.where(cap: 1).count() %>
-	   </p>
-
-	  </div>
-
-	  <i class="bi bi-caret-down-fill align-self-end"></i>
-
-        </a>
-      </div>
-      <div id="collapseThree" class="collapse" data-parent="#accordion">
-        <div class="card-body p-0">
-
-
-<table class="table table-hover d-block">
-  <thead class="table-dark shadow">
-    <tr>
-      <th>#</th>
-      <th>Capacidad</th>
-      <th>Cama Sing</th>
-      <th>Cama Mat</th>
-      <th>Precio</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
-
-  <tbody class="shadow">
-    <% @rooms.where(cap: 1).sort_by{ |room| [room.num] }.each do |room| %>
-      <tr class="text-center align-middle
-
-	 <% if room.ocupation == true %>
-	   bg-ocupado
-	 <% else %>
-	   bg-libre
-	 <% end %>
-	
-	">
-
-        <td><%= room.num %></td>
-        <td><%= room.cap %></td>
-        <td><%= room.beed1 %></td>
-        <td><%= room.beed2 %></td>
-        <td><%= room.price %></td>
-
-        <td class="d-flex">
-	   <%= link_to 'Edit', edit_room_path(room), class: "editButton" %>
-           <%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' }, class: "editButton" %></td>
-       </tr>
-       <tr class="border-bottom border-dark w-100
-	<% if room.ocupation == true %>
-	  bg-ocupado
-	<% else %>
-	  bg-libre
-	<% end %>
-	">
-        <td class="bg-dark"></td>
-        <td colspan="1" class="bg-dark text-light">Descripción: </td>
-        <td colspan="5"><%= room.desc %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        
-        <a class="card-link d-flex justify-content-between" 
-		data-toggle="collapse"
-		href="#collapseFour">
-          
-	  <p>Suits:</p>
-
-	  <div class="d-flex flex-wrap">
-
-	   <p class="">Ocupacion: </p>
-	   <p> 
-		<%= @rooms.where(desc: /suit/, ocupation: false).count() %>
-		/
-		<%= @rooms.where(desc: /suit/).count() %>
-	   </p>
-
-	  </div>
-
-	  <i class="bi bi-caret-down-fill align-self-end"></i>
-
-        </a>
-
-      </div>
-      <div id="collapseFour" class="collapse" data-parent="#accordion">
-        <div class="card-body p-0">
-
-
-<table class="table table-hover d-block">
-  <thead class="table-dark shadow">
-    <tr>
-      <th>#</th>
-      <th>Capacidad</th>
-      <th>Cama Sing</th>
-      <th>Cama Mat</th>
-      <th>Precio</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
-
-  <tbody class="shadow">
-    <% @rooms.where(desc: /suit/).sort_by{ |room| [room.num] }.each do |room| %>
-      <tr class="text-center align-middle
-
-	 <% if room.ocupation == true %>
-	   bg-ocupado
-	 <% else %>
-	   bg-libre
-	 <% end %>
-	
-	">
-
-        <td><%= room.num %></td>
-        <td><%= room.cap %></td>
-        <td><%= room.beed1 %></td>
-        <td><%= room.beed2 %></td>
-        <td><%= room.price %></td>
-
-        <td class="d-flex">
-	   <%= link_to 'Edit', edit_room_path(room), class: "editButton" %>
-           <%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' }, class: "editButton" %></td>
-       </tr>
-       <tr class="border-bottom border-dark w-100
-	<% if room.ocupation == true %>
-	  bg-ocupado
-	<% else %>
-	  bg-libre
-	<% end %>
-	">
-        <td class="bg-dark"></td>
-        <td colspan="1" class="bg-dark text-light">Descripción: </td>
-        <td colspan="5"><%= room.desc %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-        </div>
-      </div>
-    </div>
-
-
-  </div><!--acordion-->
-</div><!--acordionContainer-->
 
 </div><!--flexcontainer-->
 

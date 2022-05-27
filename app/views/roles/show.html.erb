@@ -1,0 +1,21 @@
+
+<div class="bg-white pb-5 mb-5 mx-auto rounded-bottom shadow" style="max-width: 500px">
+
+<div class="d-table mx-auto">
+
+<% if !notice.nil? %>
+<p id="notice" class="alert alert-warning"><%= notice %></p>
+<% end %>
+
+<p>
+  <strong>Role:</strong>
+  <%= @role.role %>
+</p>
+
+<%= link_to 'Edit', edit_role_path(@role), class: "btn btn-secondary" %> |
+<%= link_to 'Back', roles_path, class: "btn btn-secondary" %>
+
+
+</div>
+
+</div>

@@ -11,6 +11,7 @@ class User ActiveRecord::Base
   field :type, type: Integer
 
   has_many :items
+  has_and_belongs_to_many :roles
   has_many :bookings
 
   has_secure_password

@@ -12,45 +12,22 @@
   <% end %>
 
 
-<div class="d-table mx-2 mb-3">
+    <label class="d-block pe-4 ">Numero:</label>
+    <%= form.number_field :num , class: "form-control"  %>
 
-  <div class="d-table-row ">
-    <label class="d-table-cell text-end pe-4 ">Numero:</label>
-    <div class="d-table-cell"><%= form.number_field :num %></div>
-  </div>
-<br>
-  <div class="d-table-row ">
-    <label class="d-table-cell text-end pe-4 align-middle">Descripción:</label>
-    <div class="d-table-cell align-middle"><%= form.text_area :desc %></div>
-  </div>
-<br>
-  <div class="d-table-row ">
-    <label class="d-table-cell text-end pe-4 ">Capacidad:</label>
-    <div class="d-table-cell"><%= form.number_field :cap %></div>
-  </div>
-<br>
-  <div class="d-table-row ">
-    <label class="d-table-cell text-end pe-4 ">Cama Individual</label>
-    <div class="d-table-cell"><%= form.number_field :beed1 %></div>
-  </div>
-<br>
-  <div class="d-table-row ">
-    <label class="d-table-cell text-end pe-4 ">Cama Doble:</label>
-    <div class="d-table-cell"><%= form.number_field :beed2 %></div>
-  </div>
-<br>
-  <div class="d-table-row ">
-    <label class="d-table-cell text-end pe-4 ">Precio:</label>
-    <div class="d-table-cell"><%= form.text_field :price %></div>
-  </div>
-<br>
-  <div class="d-table-row ">
-    <label class="d-table-cell text-end pe-4 ">Ocupación:</label>
-    <div class="d-table-cell"><%= form.check_box :ocupation %></div>
-  </div>
+  </br>
+
+    <label class="d-block pe-4 ">Tipo:</label>
+    <%= form.select :style, Style.all.collect { |s| [ s.desc, s._id ] }, class: "form-control"  %>
+
+
+    <label class="d-block pe-4 mt-2 ">Ocupación:</label>
+    <%= form.check_box :ocupation %>
+ 
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Aceptar", class: "my-2 btn btn-primary" %>
   </div>
+
+
 <% end %>
-</div>

@@ -1,6 +1,30 @@
+<div class="bg-white pb-5 mb-5 mx-auto rounded-bottom shadow" style="max-width: 500px">
+
+<h1>Reservas</h1>
+
 <p id="notice"><%= notice %></p>
 
-<h1>Bookings</h1>
+<% if logged_in? %>
+
+
+  <% @bookings.where(user_id: session[:user_id]).each do |booking| %>
+
+
+  <% end %>
+  <%= link_to 'New Booking', new_booking_path %>
+
+<% else %>
+
+ <p> Debe estar registrado para reservar una habitación </p>
+
+ <%= link_to "Log in", login_path %>
+ <%= link_to "Registro", registro_path %>
+
+<% end %>
+
+
+
+
 
 <table>
   <thead>
@@ -31,3 +55,7 @@
 <br>
 
 <%= link_to 'New Booking', new_booking_path %>
+
+
+
+</div>

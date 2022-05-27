@@ -1,0 +1,43 @@
+<div class="container m-auto bg-white rounded-bottom shadow p-0 pb-5" style="max-width: 500px">
+
+<h1>Roles</h1>
+
+  <div class="d-table mx-auto">
+
+  <% if !notice.nil? %>
+  <p id="notice" class="alert alert-warning"><%= notice %></p>
+  <% end %>
+
+    <div class="mx-3">
+
+    <table class="table table-hover d-block m-auto" style="max-width: 342px">
+      <thead>
+        <tr>
+          <th>Role</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @roles.each do |role| %>
+          <tr>
+            <td><%= role.role %></td>
+            <td><%= link_to 'Show', role, class: "editButton"   %></td>
+            <td><%= link_to 'Edit', edit_role_path(role), class: "editButton"   %></td>
+            <td><%= link_to 'Destroy', role, method: :delete, data: { confirm: 'Are you sure?' } , class: "editButton"  %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to 'Crear Rol', new_role_path, class: "btn btn-primary" %>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div>

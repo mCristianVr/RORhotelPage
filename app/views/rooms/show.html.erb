@@ -1,4 +1,11 @@
-<p id="notice"><%= notice %></p>
+
+<div class="bg-white pb-5 mb-5 mx-auto rounded-bottom shadow" style="max-width: 500px">
+
+<div class="d-table mx-auto">
+
+<% if !notice.nil? %>
+<p id="notice" class="alert alert-warning"><%= notice %></p>
+<% end %>
 
 <p>
   <strong>Num:</strong>
@@ -7,27 +14,17 @@
 
 <p>
   <strong>Desc:</strong>
-  <%= @room.desc %>
+  <%= Style.find(@room.style).desc %>
 </p>
 
 <p>
   <strong>Cap:</strong>
-  <%= @room.cap %>
-</p>
-
-<p>
-  <strong>Beed1:</strong>
-  <%= @room.beed1 %>
-</p>
-
-<p>
-  <strong>Beed2:</strong>
-  <%= @room.beed2 %>
+  <%= Style.find(@room.style).cap %>
 </p>
 
 <p>
   <strong>Price:</strong>
-  <%= @room.price %>
+  <%= Style.find(@room.style).price %>€
 </p>
 
 <p>
@@ -35,5 +32,9 @@
   <%= @room.ocupation %>
 </p>
 
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
+<%= link_to 'Edit', edit_room_path(@room), class: "btn btn-secondary" %> |
+<%= link_to 'Back', rooms_path, class: "btn btn-secondary" %>
+
+</div>
+
+</div>

@@ -1,0 +1,17 @@
+<div class="container m-auto bg-white rounded-bottom shadow p-0 pb-5" style="max-width: 500px">
+
+<h1>Nuevo Estilo</h1>
+
+<div class="mx-3">
+
+<% if !notice.nil? %>
+<p id="notice" class="alert alert-warning"><%= notice %></p>
+<% end %>
+
+<%= render 'form', style: @style %>
+
+<%= link_to 'Atras', styles_path, class: "btn text-white bg-secondary"  %>
+
+
+</div>
+</div>
