@@ -9,10 +9,17 @@
         <%= @user.name.capitalize %>
       </h1>
 
+    <% if !notice.nil? %>
+    <p id="notice" class="alert alert-warning"><%= notice %></p>
+    <% end %>
+
     <div class="px-2">
       <p class=''>
         Email: <%= @user.email %>
       </p>
+
+      <%= link_to "cambiar Contraseña", edit_password_path, class: "btn btn-primary"  %>
     </div>
+
   </div>
 </div>

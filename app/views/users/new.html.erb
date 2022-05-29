@@ -29,7 +29,7 @@
       <%= f.password_field :password_confirmation, class: 'mb-1 form-control' %>
 
 
-      <%= f.hidden_field :type, :value => 2 %>
+      <%= f.hidden_field :roles, :value => Role.find_by(role: 'client')._id %>
 
 
       <%= f.submit "Crear mi cuenta", class: "mt-2 btn btn-primary" %>

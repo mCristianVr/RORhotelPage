@@ -1,0 +1,46 @@
+<div
+  class="bg-white pb-5 mb-5 mx-auto rounded-bottom shadow"
+  style="max-width: 500px;"
+>
+
+<h1>Cambiar contraseña</h1>
+
+<% flash.each do |message_type, message| %>
+  <div class="my-0 text-center alert alert-<%= message_type %>">
+    <%= message %>
+  </div>
+<% end %>
+
+<div class="mx-3">
+  <div class="">
+    <%= form_with(model: current_user, url: edit_password_path) do |f| %>
+      <% if current_user.errors.any? %>
+
+        <div id="error_explanation">
+
+          <div class="alert alert-danger">
+            El formulario tiene <%= pluralize(current_user.errors.count, "error") %>.
+          </div>
+
+          <ul>
+          <% current_user.errors.full_messages.each do |msg| %>
+            <li class='text-danger'><%= msg %></li>
+          <% end %>
+          </ul>
+
+        </div>
+
+      <% end %>
+
+      <%= f.label :password, "Contraseña" %>
+      <%= f.password_field :password, class: 'mb-1 form-control' %>
+
+      <%= f.label :password_confirmation, "Confirmar contraseña" %>
+      <%= f.password_field :password_confirmation, class: 'mb-1 form-control' %>
+
+      <%= f.submit "Aceptar", class: "mt-2 btn btn-primary" %> |
+      <%= link_to 'Back', user_path(:id => session[:user_id]), class: "btn btn-secondary" %>
+    <% end %>
+  </div>
+</div>
+</div>

@@ -8,10 +8,9 @@ class User ActiveRecord::Base
   field :name, type: String
   field :email, type: String
   field :password_digest, type: String
-  field :type, type: Integer
 
   has_many :items
-  has_and_belongs_to_many :roles
+  belongs_to :roles
   has_many :bookings
 
   has_secure_password
