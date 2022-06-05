@@ -1,0 +1,42 @@
+<div class="m-auto bg-white pb-5" style="min-width: 516px">
+
+  <!----------------Para los intrusos===============---
+      Para asegurarnos de que no se accede a esta 
+      página sin permiso, redirigimos a todo el que 
+      no tenga una sesion de reception o admin
+  -->
+<%=
+  unless session[:role] == 'admin' || session[:role] == 'reception' 
+    controller.redirect_to login_path
+  end
+%>
+
+<% if session[:role] == 'admin' %>
+
+  <h1>Usuarios</h1>
+
+
+  <!----------------Para los admins===============---
+      LLama a plantailla pensada para los admins que 
+      despliega todos los elementos de la tabla usuarios
+  -->
+  <%= render 'admin' %>
+
+<% elsif session[:role] == 'reception' %>
+
+  <h1>Clientes</h1>
+
+  <p id="notice"><%= notice %></p>
+
+  
+  <!----------------Para los recepcionistas===============---
+      LLama a plantailla pensada para los recepcionistas
+      que solo despliega los usuarios con el rol de cliente
+  -->
+  <%= render 'reception' %>
+  
+
+<% end %>
+
+
+</div>

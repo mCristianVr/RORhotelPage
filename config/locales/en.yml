@@ -30,4 +30,21 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  errors:
+    format: "%{message}"
+  mongoid:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "El email no puede estar vacio"
+              taken: "El email ya esta registrado"
+              invalid: "El email no es válido"
+            password:
+              blank: "Debe establecer una contraseña"              
+            password_confirmation:
+              blank: "Debe confirmar contraseña"  
+              confirmation: "Las contraseñas no coinciden"
+            name:
+              blank: "El nombre no puede estar vacio"

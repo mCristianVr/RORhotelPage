@@ -18,7 +18,42 @@
         Email: <%= @user.email %>
       </p>
 
-      <%= link_to "cambiar Contraseña", edit_password_path, class: "btn btn-primary"  %>
+      <p class=''>
+        Rol: <%= Role.find_by(_id: @user.roles_id).role %>
+      </p>
+
+      <%= 
+        if session[:user_id] == @user._id.to_s
+          link_to "cambiar Contraseña", edit_password_path, class: "btn btn-primary"  
+        end
+      %>
+
+      <% if session[:role] == 'admin' && session[:user_id] != @user._id.to_s %>
+
+        <div class="my-3">
+          <%= link_to 'Destroy', @user,
+            method: :delete, data: { confirm: 'Are you sure?' },
+            class: "editButton" %>
+
+          <%= link_to 'Convertir Recepcionista', 
+            make_reception_path(id: @user), 
+            class: "editButton", 
+            method: :patch, data: { 
+              confirm: 'Seguro que quieres convertir este usuario en recepcionista?' } %>
+
+          <%= link_to 'Convertir en Admin', 
+            make_admin_path(id: @user), 
+            class: "editButton", 
+            method: :patch, data: { 
+              confirm: 'Seguro que quieres convertir este usuario en administrador?' }  %>
+        </div>
+
+        <div class="my-3">
+          <%= link_to 'Back', users_path, class: "editButton" %>
+        </div>
+
+      <% end %>
+      
     </div>
 
   </div>

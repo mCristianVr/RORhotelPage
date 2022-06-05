@@ -4,7 +4,6 @@
 
 <p id="notice"><%= notice %></p>
 
-<% if logged_in? %>
 
 
   <% @bookings.where(user_id: session[:user_id]).each do |booking| %>
@@ -13,14 +12,12 @@
   <% end %>
   <%= link_to 'New Booking', new_booking_path %>
 
-<% else %>
 
  <p> Debe estar registrado para reservar una habitación </p>
 
  <%= link_to "Log in", login_path %>
  <%= link_to "Registro", registro_path %>
 
-<% end %>
 
 
 

@@ -1,8 +1,9 @@
 module SessionsHelper
+
   def log_in(user)
     session[:user_id] = user._id.to_s
     session[:name] = user.name.capitalize
-
+    session[:role] = Role.find_by(_id: user.roles_id).role.to_s
   end
 
   def current_user
@@ -16,7 +17,7 @@ module SessionsHelper
   end
 
   def log_out
-    session.delete(:user_id)
+    session.clear
     @current_user = nil
   end
 
@@ -32,4 +33,5 @@ module SessionsHelper
   def store_location
     session[:forwarding_url] = request.original_url if request.get?
   end
+
 end

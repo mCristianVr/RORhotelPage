@@ -1,0 +1,30 @@
+<div class="container" >
+
+  <table class="table table-hover d-block m-0">
+    <thead class="table-dark ">
+      <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+
+    <tbody class="">
+
+  <!---------------- Solo los usuarios clientes ===============----->
+      <% 
+        role_id = Role.find_by(role: 'client')._id
+        User.where(roles_id: role_id).each do |user| 
+      %>
+        <tr class="text-center align-middle">
+
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+
+        </tr>
+         
+      <% end %>
+
+    </tbody>
+  </table>
+
+</div>

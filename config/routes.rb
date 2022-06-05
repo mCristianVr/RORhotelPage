@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get "password", to: "passwords#edit", as: :edit_password
   patch "password", to: "passwords#update"
 
-
+  patch "make_reception", to: "users#make_reception"
+  patch "make_admin", to: "users#make_admin"
 
 end

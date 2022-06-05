@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  before_action :logged_in_user, except: [:index]
   before_action :set_booking, only: %i[ show edit update destroy ]
 
   # GET /bookings or /bookings.json

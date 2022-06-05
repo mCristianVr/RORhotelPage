@@ -1,4 +1,5 @@
 class StylesController < ApplicationController
+  before_action :logged_in_user
   before_action :set_style, only: %i[ show edit update destroy ]
 
   # GET /styles or /styles.json

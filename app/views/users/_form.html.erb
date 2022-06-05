@@ -1,0 +1,23 @@
+<%= form_with(model: user) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <label class="d-block pe-4 ">Rol:</label>
+    <%= form.select :role_id, Role.all.collect { |s| [ s.role, s._id ] }, class: "form-control"  %>
+
+  <div class="actions">
+    <%= form.submit "Aceptar", class: "my-2 btn btn-primary" %>
+  </div>
+
+
+<% end %>

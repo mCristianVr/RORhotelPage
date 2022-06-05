@@ -1,0 +1,72 @@
+  <div class="container" >
+
+    <% if !notice.nil? %>
+    <p id="notice" class="alert alert-warning"><%= notice %></p>
+    <% end %>
+
+    <!----------------Busqueda de usuarios===============----->
+    <div class="mb-4">
+      <%= form_tag(users_path, method: :get) do |f|%>
+        <p> Buscar Usuario </p>
+        <%= text_field_tag(:search, params[:search]) %>
+        <%= submit_tag ("Buscar") %>
+      <% end %>
+    </div>
+
+    <!----------------Acordion Container LOOP===============----->
+
+    <div id="accordion" >
+
+      <!---------------- Nueva tabla por cada rol ===============----->
+      <% Role.each do |role| %>
+        <div class="card">
+          <div class="card-header">
+            <a class="card-link d-flex " data-toggle="collapse" href="#collapse<%= role.role %>">
+                    
+              <p class="me-auto">Usuarios <%= role.role %>:</p>
+
+              <i class="bi bi-caret-down-fill align-self-end"></i>
+
+            </a>
+          </div>
+
+          <div id="collapse<%= role.role %>" class="collapse" data-parent="#accordion">
+            <div class="card-body p-0">
+
+              <table class="table table-hover d-block m-0">
+                <thead class="table-dark ">
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th colspan="1"></th>
+                  </tr>
+                </thead>
+
+                <tbody class="">
+
+                  <!---------------- Por cada usuario de este rol ===============----->
+                  <% User.where(roles_id: role._id).each do |user| %>
+                    <tr class="text-center align-middle">
+
+                      <td><%= user.name %></td>
+                      <td><%= user.email %></td>
+
+                      <td class="d-flex">
+                      
+                        <%= link_to 'Show', user, class: "editButton" %>
+                        <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "editButton" %> 
+                      </td>
+
+                    </tr>
+                  <% end %>
+
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    </div><!---------------- End of acordion ===============----->
+  </div><!---------------- End of container ===============----->
