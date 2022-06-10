@@ -11,27 +11,33 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
 
-  <div class="field">
-    <%= form.label :room_id %>
-    <%= form.text_field :room_id %>
-  </div>
+  <%= hidden_field_tag 'booking[user_id]', session[:user_id] %>
 
-  <div class="field">
-    <%= form.label :dateIn %>
-    <%= form.date_select :dateIn %>
-  </div>
+  <%= form.label "Fecha de entrada y salida:" %>
+  <%= form.text_field :dateRange,
+    data: {
+      mode: "range",
+      controller: "flatpickr",
+      flatpickr_date_format: "d-m-Y",
+      flatpickr_min_date: "today"
+    } 
+  %>
 
-  <div class="field">
-    <%= form.label :dateOut %>
-    <%= form.date_select :dateOut %>
-  </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <% Style.each do |style| %>
+
+    <div class="card my-2 mx-auto" style="width: 18rem;">
+      <%= image_tag 'room_' + style.desc + '.jpg', alt: 'icon' %>
+
+      <div class="card-body">
+        <h5 class="card-title"> <%= style.desc.capitalize %> </h5>
+        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet repellendus nesciunt suscipit veritatis aut vel fugiat voluptates, officiis adipisci, soluta libero quia sint recusandae cum mollitia veniam ullam exercitationem, cupiditate..</p>
+        
+        <%= form.button 'Reservar habitación', type: "submit", class: "btn btn-primary", name: "booking[style_id]", value: style._id %>
+      </div>
+    </div>
+
+  <% end %>
+
 <% end %>

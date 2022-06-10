@@ -1,8 +1,8 @@
 class Booking
   include Mongoid::Document
   include Mongoid::Timestamps
-  field :dateIn, type: Date
-  field :dateOut, type: Date
+  field :dateRange, type: String
+
   belongs_to :user
-  belongs_to :room
+  belongs_to :style
 end

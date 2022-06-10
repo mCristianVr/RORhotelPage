@@ -5,6 +5,7 @@ class BookingsController < ApplicationController
   # GET /bookings or /bookings.json
   def index
     @bookings = Booking.all
+    @booking = Booking.new
   end
 
   # GET /bookings/1 or /bookings/1.json
@@ -26,8 +27,8 @@ class BookingsController < ApplicationController
 
     respond_to do |format|
       if @booking.save
-        format.html { redirect_to booking_url(@booking), notice: "Booking was successfully created." }
-        format.json { render :show, status: :created, location: @booking }
+        format.html { redirect_to bookings_url, notice: "La reserva ha sido creada correctamente." }
+        format.json { render :index }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
@@ -39,8 +40,8 @@ class BookingsController < ApplicationController
   def update
     respond_to do |format|
       if @booking.update(booking_params)
-        format.html { redirect_to booking_url(@booking), notice: "Booking was successfully updated." }
-        format.json { render :show, status: :ok, location: @booking }
+        format.html { redirect_to bookings_url, notice: "La reserva ha sido actualizada correctamente." }
+        format.json { render :index }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
@@ -53,7 +54,7 @@ class BookingsController < ApplicationController
     @booking.destroy
 
     respond_to do |format|
-      format.html { redirect_to bookings_url, notice: "Booking was successfully destroyed." }
+      format.html { redirect_to bookings_url, notice: "La reserva se ha destruido correctamente." }
       format.json { head :no_content }
     end
   end
@@ -66,6 +67,6 @@ class BookingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def booking_params
-      params.require(:booking).permit(:user_id, :room_id, :dateIn, :dateOut)
+      params.require(:booking).permit(:user_id, :style_id, :datRange)
     end
 end

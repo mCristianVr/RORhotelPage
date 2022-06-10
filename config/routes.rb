@@ -29,4 +29,6 @@ Rails.application.routes.draw do
   patch "make_reception", to: "users#make_reception"
   patch "make_admin", to: "users#make_admin"
 
+  post 'bookings/create', to: 'bookings#create'
+
 end
