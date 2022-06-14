@@ -9,4 +9,8 @@ class Style
 
   before_save { self.desc = desc.downcase }
 
+  validates :desc, presence: true, format: { with: /\A[a-zA-Z]+\z/, message: "El nombre del estilo solo puede formase por letras, sin espacios." }
+  validates :cap, presence: true, numericality: true
+  validates :price, presence: true, numericality: true
+
 end

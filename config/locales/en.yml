@@ -48,3 +48,26 @@ en:
               confirmation: "Las contraseñas no coinciden"
             name:
               blank: "El nombre no puede estar vacio"
+        booking:
+          attributes:
+            dateRange:
+              blank: "Debe seleccionar una fecha o rango de fechas"
+        style:
+          attributes:
+            desc:
+              blank: "Debe dar un nombre al estilo"
+            cap:
+              blank: "Debe asignar una capacidad"
+              not_a_number: "La capacidad debe asignarse como número"
+            price:
+              blank: "Debe asignar un precio"
+              not_a_number: "El precio debe asignarse como número"
+        room:
+          attributes:
+            num:
+              blank: "Debe asignar un número para la nueva habitación"
+              taken: "Este número de habitación ya esta asignado"
+
+
+
+

@@ -8,29 +8,25 @@
 <% end %>
 
 <p>
-  <strong>Num:</strong>
+  <strong>Numero:</strong>
   <%= @room.num %>
 </p>
 
 <p>
-  <strong>Desc:</strong>
+  <strong>Estilo:</strong>
   <%= Style.find(@room.style).desc %>
 </p>
 
 <p>
-  <strong>Cap:</strong>
+  <strong>Capacidad:</strong>
   <%= Style.find(@room.style).cap %>
 </p>
 
 <p>
-  <strong>Price:</strong>
+  <strong>Precio:</strong>
   <%= Style.find(@room.style).price %>€
 </p>
 
-<p>
-  <strong>Ocupation:</strong>
-  <%= @room.ocupation %>
-</p>
 
 <%= link_to 'Edit', edit_room_path(@room), class: "btn btn-secondary" %> |
 <%= link_to 'Back', rooms_path, class: "btn btn-secondary" %>

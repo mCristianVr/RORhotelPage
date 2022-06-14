@@ -1,43 +1,117 @@
-<%= form_with(model: booking) do |form| %>
-  <% if booking.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
 
-      <ul>
-        <% booking.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<% if logged_in? %>
+
+  <%= form_with(model: booking) do |form| %>
+    <% if booking.errors.any? %>
+      <div id="error_explanation" class="alert alert-warning">
+        <p>No se ha podido crear la reserva:</p>
+
+        <ul>
+          <% booking.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+    <div class="m-2">
+
+    <%= hidden_field_tag 'booking[user_id]', session[:user_id] %>
+
+    <%= form.label "Fecha de entrada y salida:" %>
+
+    <% if params.has_key?(:dateRange) %>
+      <%= form.text_field :dateRange, style: "width: 200px", id: "datepicker",
+        value: params[ :dateRange ],
+        data: {
+          mode: "range",
+          controller: "flatpickr",
+          flatpickr_date_format: "d-m-Y",
+          flatpickr_min_date: "today"
+        }
+      %>
+    <% else %>
+      <%= form.text_field :dateRange, style: "width: 200px", id: "datepicker",
+        data: {
+          mode: "range",
+          controller: "flatpickr",
+          flatpickr_date_format: "d-m-Y",
+          flatpickr_min_date: "today"
+        }  
+      %>
+    <% end %>
+   
     </div>
+
   <% end %>
 
+<% else %>
+  <div class="alert alert-info">
+    <p class="text-strong">Inicie sesion ahora para resrevar una habitación</p>
+    <%= link_to "Iniciar sesion", login_path, class: "editButton" %>
+    <%= link_to "Crear cuenta", registro_path, class: "editButton" %>
+  </div>
+<% end %>
 
-  <%= hidden_field_tag 'booking[user_id]', session[:user_id] %>
+  
 
-  <%= form.label "Fecha de entrada y salida:" %>
-  <%= form.text_field :dateRange,
-    data: {
-      mode: "range",
-      controller: "flatpickr",
-      flatpickr_date_format: "d-m-Y",
-      flatpickr_min_date: "today"
-    } 
-  %>
+  <div class="d-flex flex-wrap">
 
+    <% Style.each do |style| %>
+    <%= form_with(model: booking) do |form| %>
 
-  <% Style.each do |style| %>
-
-    <div class="card my-2 mx-auto" style="width: 18rem;">
+    <div class="card m-2" style="width: 18rem;">
       <%= image_tag 'room_' + style.desc + '.jpg', alt: 'icon' %>
 
       <div class="card-body">
-        <h5 class="card-title"> <%= style.desc.capitalize %> </h5>
+
+        <h5 class="card-title"> Habitación <%= style.desc.capitalize %> </h5>
+        <h6> Precio por noche: <%= style.price %>€ </h6>
+        <h6> Capacidad: <%= style.cap %> personas </h6>
+
         <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet repellendus nesciunt suscipit veritatis aut vel fugiat voluptates, officiis adipisci, soluta libero quia sint recusandae cum mollitia veniam ullam exercitationem, cupiditate..</p>
         
-        <%= form.button 'Reservar habitación', type: "submit", class: "btn btn-primary", name: "booking[style_id]", value: style._id %>
+
+        <% if params.has_key?(:stylecounter) %>
+
+          <%= hidden_field_tag 'booking[dateRange]', params[ :dateRange ] %>
+          <%= hidden_field_tag 'booking[user_id]', session[:user_id] %>
+          
+          <%= hidden_field_tag 'booking[room_id]', 
+            params[ :stylecounter ][ style.desc ][1] 
+          %>
+
+          <div class="alert alert-warning">
+
+            <% if params[ :stylecounter ][ style.desc ][0].to_i <= 0 %>
+              No hay habitaciones disponibles para ese rango de fechas.
+            <% else %>
+              Habitaciones disponibles: <%= params[ :stylecounter ][ style.desc ][0]  %>
+
+              <%= form.button 'Reservar habitación', type: "submit", class: "btn btn-primary", name: "booking[style_id]", value: style._id %>
+            <% end %>
+
+          </div>
+        <% end %>
+
       </div>
     </div>
 
+    <% end %>
   <% end %>
 
-<% end %>
+  </div>
+
+
+<script>
+$(document).ready(function(){
+  $("#datepicker").change(function(){ 
+    var str = $('#datepicker').val();
+    if ( ~str.indexOf("to") ) {
+      $(this).closest("form").append('<input type="hidden" name="booking[disponibility]" />');
+      $(this).closest("form").submit();
+    };
+  });
+});
+</script>

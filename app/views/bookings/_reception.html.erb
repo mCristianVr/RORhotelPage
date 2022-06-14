@@ -1,0 +1,37 @@
+
+
+<table class="table table-hover d-block m-0">
+  <thead class="table-dark ">
+    <tr>
+      <th>Fecha de entrada</th>
+      <th>Fecha de salida</th>
+      <th>Tipo de habitacion</th>
+      <th>Número</th>
+      <th>Usuario</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody class="">
+<% Booking.each do |book| %>
+  <!---------------- Por cada Reserva ===============----->
+<tr class="text-center align-middle">
+
+	<td><%= book[:dateRange].split(/ to /)[0] %></td>
+	<td><%= book[:dateRange].split(/ to /)[1] %></td>
+	<td><%= Style.find_by( _id: book[:style_id] ).desc %></td>
+	<td><%= Room.find_by( _id: book[:room_id] ).num %></td>
+	<td><%= User.find_by( _id: book[:user_id] ).name %></td>
+
+	<td class="d-flex">
+		<%= link_to 'Edit', edit_booking_path(book), class: "editButton" %>
+		<%= link_to 'Cancelar', book, method: :delete, data: { confirm: 'Estas seguro de cancelar esta reserva?' }, class: "editButton" %> 
+	</td>
+
+</tr>
+       
+<% end %>
+
+  </tbody>
+</table>
+

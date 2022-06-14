@@ -1,32 +1,11 @@
-<div class="d-flex flex-row flex-wrap">
-
-  <div class="m-auto">
-    <div class="mx-2 border shadow rounded p-4 d-inline-flex flex-column bg-white ">
-    <% unless (@rooms.nil? && @rooms != 0) %>
-    
-      	<p class="m-0">
-
-      <!---------------- Ocupación general total ===============----->
-      		Ocupacion general: 
-      		<%= (@rooms.where(ocupation: true).count())*100/@rooms.count() %>%
-      	</p>
-      	<div class="progress m-o mb-3" style="">
-      		<div class="p-0 d-flex progress-bar" role="progressbar" aria-valuenow="<%= (@rooms.where(ocupation: true).count())*100/@rooms.count() %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (@rooms.where(ocupation: true).count())*100/@rooms.count() %>%">
-      		</div>
-      	</div>
-
-    <% end %>
-
-    </div>
-
-    <div class="m-2 my-3">
-     <%= link_to 'Nueva habitacion', new_room_path, class: "btn btn-primary" %>
-    </div>
-  </div>
+<div class="">
 
 
   <!----------------Acordion Container LOOP===============----->
   <div class="container" style="max-width: 385px; min-width: 385px">
+    <div class="m-2 my-3">
+     <%= link_to 'Nueva habitacion', new_room_path, class: "btn btn-primary" %>
+    </div>
     <div id="accordion" style="max-width: 385px; min-width: 385px">
 
 
@@ -40,11 +19,8 @@
 
             <div class="d-flex flex-wrap">
 
-             <p class="">Ocupacion: &nbsp;</p>
-             <p> 
-              <!---------------- Resumen de la ocupacion ===============----->
-              <%= @rooms.where(style_id: style._id, ocupation: false).count() %>
-              /
+             <p class="">Cantidad: &nbsp;</p>
+             <p>
               <%= @rooms.where(style_id: style._id).count() %>
               &nbsp;
              </p>
@@ -74,15 +50,7 @@
 
                 <!---------------- Por cada habitacion con el estilo ===============----->
                 <% @rooms.where(style_id: style._id).sort_by{ |room| [room.num] }.each do |room| %>
-                  <tr class="text-center align-middle
-
-                    <% if room.ocupation == true %>
-                      bg-ocupado
-                    <% else %>
-                      bg-libre
-                    <% end %>
-                  
-                  ">
+                  <tr class="text-center align-middle">
 
                     <td><%= room.num %></td>
                     <td><%= room.style.cap %></td>

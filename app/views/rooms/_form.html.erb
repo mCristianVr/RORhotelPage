@@ -2,13 +2,15 @@
 <%= form_with(model: room) do |form| %>
   <% if room.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(room.errors.count, "error") %> prohibited this room from being saved:</h2>
+      <div class="alert alert-warning">No se ha podido crear la habitacion:
 
       <ul>
         <% room.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
+
+      </div>
     </div>
   <% end %>
 
@@ -19,12 +21,7 @@
   </br>
 
     <label class="d-block pe-4 ">Tipo:</label>
-    <%= form.select :style, Style.all.collect { |s| [ s.desc, s._id ] }, class: "form-control"  %>
-
-
-    <label class="d-block pe-4 mt-2 ">Ocupación:</label>
-    <%= form.check_box :ocupation %>
- 
+    <%= form.select :style, Style.all.collect { |s| [ s.desc, s._id ] }, class: "form-control"  %> 
 
   <div class="actions">
     <%= form.submit "Aceptar", class: "my-2 btn btn-primary" %>

@@ -17,3 +17,18 @@ require("flatpickr/dist/flatpickr.css")
 
 // Manually register Flatpickr as a stimulus controller
 application.register('flatpickr', Flatpickr)
+
+
+export default class extends Flatpickr {
+
+  // automatically submit form when a date is selected
+  change(selectedDates, dateStr, instance) {
+    alert( "noif." + selectedDates );
+
+    if (selectedDates.lenght == 2) {
+		const form = this.element.closest("form");
+		form.append('<input type="hidden" name="disponibility" />');
+		Rails.fire(form, "submit");
+	}
+  }
+}

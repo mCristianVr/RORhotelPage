@@ -1,13 +1,27 @@
-<div class="bg-white pb-5 mb-5 mx-auto rounded-bottom shadow" 
+<div class="bg-white pb-5 mb-5 m-auto rounded-bottom shadow" 
   style="width: fit-content; min-width: 500px">
 
-<h1>Reservas</h1>
+<% if logged_in? %>
+  <h1>Reservas</h1>
+<% else %>
+  <h1>Habitaciones</h1>
+<% end%>
 
 <div class="px-3">
 
-<p id="notice"><%= notice %></p>
+<% if !notice.nil? %>
+<p id="notice" class="alert alert-warning"><%= notice %></p>
+<% end %>
+
+<% if session[:role] == 'client' %>
 
 <%= render 'form', booking: @booking %>
+
+<% else %>
+
+<%= render 'reception' %>
+
+<% end %>
 
 </div>
 

@@ -5,6 +5,17 @@
 
 <div class="mx-3">
 
+<% 1.upto(999999) do |i|
+	if Room.find_by(num: i).nil? 
+		@number = i
+		break
+	end
+end %>
+
+<p id="notice" class="alert alert-warning">
+	El número más pequeño no asignado a una habitación es: <%= @number %>
+</p>
+
 <%= render 'form', room: @room %>
 
 <%= link_to 'Back', rooms_path, class: "btn btn-secondary"%>
