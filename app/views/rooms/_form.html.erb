@@ -1,16 +1,14 @@
 
 <%= form_with(model: room) do |form| %>
   <% if room.errors.any? %>
-    <div id="error_explanation">
-      <div class="alert alert-warning">No se ha podido crear la habitacion:
+    <div id="error_explanation"  class="alert alert-warning">
+      Hay <%= pluralize(style.errors.count, "error") %>:
 
       <ul>
-        <% room.errors.each do |error| %>
+        <% style.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
-
-      </div>
     </div>
   <% end %>
 

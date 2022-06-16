@@ -2,8 +2,8 @@
 
 <%= form_with(model: style) do |form|%>
   <% if style.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(style.errors.count, "error") %> prohibited this style from being saved:</h2>
+    <div id="error_explanation" class="alert alert-warning">
+      Hay <%= pluralize(style.errors.count, "error") %>:
 
       <ul>
         <% style.errors.each do |error| %>

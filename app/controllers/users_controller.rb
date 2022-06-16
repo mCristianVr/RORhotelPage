@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   before_action :logged_in_user, only: [:show]
 
   def index
@@ -28,7 +27,6 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-
     if @user.present?
       @user.destroy
 
@@ -37,7 +35,6 @@ class UsersController < ApplicationController
         format.json { head :no_content }
       end
     end
-
   end
 
 #funcion para cambiar el rol del usuario al rol recepcionista
@@ -45,7 +42,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.present?
       @user.update_attribute(:roles_id, Role.find_by(role: "reception")._id)
-
       respond_to do |format|
         format.html { redirect_to users_url, notice: "El usuario se ha actualizado." }
         format.json { head :no_content }
@@ -58,14 +54,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.present?
       @user.update_attribute(:roles_id, Role.find_by(role: "admin")._id)
-
       respond_to do |format|
         format.html { redirect_to users_url, notice: "El usuario se ha actualizado." }
         format.json { head :no_content }
       end
     end
   end
-
 
   private
 
@@ -77,7 +71,6 @@ class UsersController < ApplicationController
     @user = User.all.find{|user| user.email.include?(params[:search])}
     if @user.present?
       redirect_to user_path(@user)
-
     else
       respond_to do |format|
         format.html { redirect_to users_url, notice: 'El usuario no existe' }
