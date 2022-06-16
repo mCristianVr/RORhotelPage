@@ -82,4 +82,3 @@ subjectKeyIdentifier   = hash
 authorityKeyIdentifier = keyid,issuer
 basicConstraints       = CA:FALSE
 keyUsage               = digitalSignature, keyEncipherment
-

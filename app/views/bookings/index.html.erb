@@ -13,7 +13,7 @@
 <p id="notice" class="alert alert-warning"><%= notice %></p>
 <% end %>
 
-<% if session[:role] == 'client' %>
+<% if session[:role] == 'client' || !logged_in? %>
 
 <%= render 'form', booking: @booking %>
 

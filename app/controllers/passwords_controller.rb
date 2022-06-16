@@ -6,6 +6,7 @@ class PasswordsController < ApplicationController
 
   end
 
+  #funcion para modificar la contraseña del propio usuario
   def update
     if current_user.update( password_params )
 	redirect_to user_path(:id => session[:user_id]), notice: "Contraseña actualizada."

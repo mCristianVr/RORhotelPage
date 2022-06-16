@@ -40,6 +40,7 @@ class UsersController < ApplicationController
 
   end
 
+#funcion para cambiar el rol del usuario al rol recepcionista
   def make_reception()
     @user = User.find(params[:id])
     if @user.present?
@@ -52,6 +53,7 @@ class UsersController < ApplicationController
     end
   end
 
+#funcion para cambiar el rol del usuario al rol administrador
   def make_admin()
     @user = User.find(params[:id])
     if @user.present?

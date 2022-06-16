@@ -22,10 +22,15 @@ class BookingsController < ApplicationController
   end
 
   # POST /bookings or /bookings.json
+  #Se usa la funcion de crear reserva para llamar a la funcion de disponibilidad
   def create
 
+    #si se llama a esta funcion con el parametro [:disponibility] 
+    #llamara a la funcion de disponibilidad en lugar de crear la reserva
     if booking_params[:disponibility]
 
+      #si se ha introducido solo una fecha en lugar de un rango de fechas
+      #refrescara la pagina y mostrara un error
       unless booking_params[:dateRange].include? " to "
         respond_to do |format|
           format.html { redirect_to bookings_url, notice: "Debe elegir un rango de fechas." }
@@ -35,6 +40,9 @@ class BookingsController < ApplicationController
 
         disponibility
 
+        #devolvera a la misma pagina con el array generado en la funcion de disponibilidad
+        #y otro parametro con la fecha elegida para mostrarla en el input
+        #   y para usarse como valor oculto cuando se reserve la habitación
         respond_to do |format|
           format.html { 
             redirect_to bookings_url( 
@@ -46,6 +54,9 @@ class BookingsController < ApplicationController
 
       end
 
+    #si se llama a esta funcion de forma normal 
+    #se creara la resrva con los valores ocultos del cliente y la fecha,
+    #   y el estilo que el haya elegido
     else
 
       @booking = Booking.new(booking_params)
@@ -68,25 +79,36 @@ class BookingsController < ApplicationController
 
   end
 
+#funcion para ver cuantas habitaciones hay disponibles de cada tipo
   def disponibility
 
+    #la fecha se guarda como cadena de texto asi que tenemos que transformarla
+    # en un objeto tipo fecha para poder interaccionar con ella
     @dateIn = DateTime.parse(booking_params[:dateRange].split(/ to /)[0])
     @dateOut = DateTime.parse(booking_params[:dateRange].split(/ to /)[1]) - 1.day
 
     @styleCounter = Hash.new
 
+    #por cada estilo:
     Style.each do |style|
 
+      #crea un aray con todas las habitaciones de este estilo
+      #seran las posibles habitaciones que podra reservar a no ser que este ocupada
       rooms = Room.where( style_id: style._id ).pluck(:_id)
 
+      #vamos a guardar una cantidad de habitaciones por cada dia dentro 
+      #del rango de fechas
       dayCounter = Array.new
 
       (@dateIn..@dateOut).each do |day|
 
         counter = 0
 
+        #por cada reserva existente
         Booking.where( style_id: style._id ).each do |book|
 
+          #si no existe ninguna resrva relacionada con este estilo de habitacion
+          #rompe el bucle y pasa al siguiente estilo
           if book[:dateRange].nil?
             break
           end
@@ -95,20 +117,27 @@ class BookingsController < ApplicationController
           bookOut = DateTime.parse(book[:dateRange].split(/ to /)[1].to_s)
 
           if (bookIn...bookOut).include?(day)
-          #if day.between?(bookIn, bookOut)
+          #suma uno al contador si hay una habitacion ocupada
+          #y elimina la habitacion ocupada de las posibles habitaciones
             counter+= 1
             rooms.delete(book[:room_id])
-
-
           end
 
         end
 
+        #resta la cantidad de habitaciones ocupadas a la cantidad total
+        #para guardar el numer de habitaciones libres
         counter = Room.where(style_id: style._id).count - counter
+
+        #todos los dias dentro del rango añade un numero diferente de habitaciones
+        #despues se cogera solo el numero mas pequeño
         dayCounter.append(counter)
 
       end
 
+      #devuelve un array con los nombres de los estiolos como index de los objetos
+      #y por cada objecto devuelve la cantidad de habitaciones libres y la habitacion
+      #que se asignaria en caso de que se reserve una habitación de ese estilo
       @styleCounter[style.desc] = [dayCounter.min, rooms[0] ]
 
     end
